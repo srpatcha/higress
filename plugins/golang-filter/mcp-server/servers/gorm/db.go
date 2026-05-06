@@ -270,7 +270,7 @@ func (c *DBClient) ListTables() ([]string, error) {
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error iterating table rows: %w", err)
+		return nil, fmt.Errorf("failed to iterate table rows in ListTables: %w", err)
 	}
 
 	return tables, nil

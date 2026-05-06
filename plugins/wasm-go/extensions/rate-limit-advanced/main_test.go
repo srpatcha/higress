@@ -130,9 +130,10 @@ func TestCounterStoreGetOrCreate(t *testing.T) {
 	assert.Equal(t, c1, c2)
 	assert.Equal(t, 1, store.Size())
 
-	// Different key creates new counter
+	// Different key creates new counter (use NotSame for pointer identity since
+	// two empty SlidingWindowCounters with identical params are deeply-equal)
 	c3 := store.GetOrCreate("user:2", 10, 60000)
-	assert.NotEqual(t, c1, c3)
+	assert.NotSame(t, c1, c3)
 	assert.Equal(t, 2, store.Size())
 }
 
